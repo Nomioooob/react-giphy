@@ -31,9 +31,11 @@ class App extends Component {
       rating: 'g',
       limit: 10
     }, (err, res) => {
-      this.setState({
-        ids: res.data.map((gif) => gif.id)
-      });
+      if(this.props.data) {
+        this.setState({
+          ids: res.data.map((gif) => gif.id)
+        });
+      }
     });
   }
 
