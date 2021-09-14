@@ -5,7 +5,7 @@ import GifList from './gifList';
 import Gif from './gif';
 
 const giphy = require('giphy-api')({
-  apiKey: 'process.env.REACT_APP_GIPHY_API_KEY',
+  apiKey: process.env.GIPHY_API_KEY,
   https: true
 });
 
@@ -26,16 +26,15 @@ class App extends Component {
   }
 
   changeGifIds = (keyword) => {
+    console.log(keyword);
     giphy.search({
       q: keyword,
       rating: 'g',
       limit: 10
     }, (err, res) => {
-      if(this.props.data) {
-        this.setState({
-          ids: res.data.map((gif) => gif.id)
-        });
-      }
+      this.setState({
+        ids: res.data.map((gif) => gif.id)
+      });
     });
   }
 

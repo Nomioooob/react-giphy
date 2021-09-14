@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+require('dotenv').config();
+const webpack = require('webpack');
 
 module.exports = {
   output: {
@@ -8,8 +10,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: '!!html-loader!templates/index.html'
-    })
+      template: '!!html-loader!templates/index.html',
+    }),
+    new webpack.EnvironmentPlugin(['GIPHY_API_KEY'])
   ],
   devtool: 'source-map',
   mode: "development",
